@@ -1,3 +1,2 @@
 #!/bin/bash
-echo "Hello,World"
--e "Hello,World"
+ "Hello,world"
