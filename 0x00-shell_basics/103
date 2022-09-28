@@ -1,1 +1,0 @@
-ls -map | sort -d commas
