@@ -1,1 +1,2 @@
-ln -s/bin/ls__ls__
+#!/bin/bash
+cd -
