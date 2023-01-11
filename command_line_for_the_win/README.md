@@ -166,4 +166,4 @@ cat reverse-me.txt | tac
 Level 32 : Print the file faces.txt, but only print the first instance of each duplicate line, even if the duplicates don't appear next to each other.
 Note that order matters so don't sort the lines before removing duplicates.
 
-cat reverse-me.txt | tac
+awk '!c[$0]++' faces.txt
