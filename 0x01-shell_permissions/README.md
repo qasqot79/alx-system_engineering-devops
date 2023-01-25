@@ -1,6 +1,5 @@
 0. My name is Betty
 mandatory
-Score: 100.0% (Checks completed: 100.0%)
 Create a script that switches the current user to the user betty.
 
 You should use exactly 8 characters for your command (+1 character for the new line)
@@ -16,7 +15,7 @@ File: 0-iam_betty
     
 1. Who am I
 mandatory
-Score: 100.0% (Checks completed: 100.0%)
+
 Write a script that prints the effective username of the current user.
 
 julien@ubuntu:/tmp/h$ ./1-who_am_i
@@ -29,8 +28,7 @@ Directory: 0x01-shell_permissions
 File: 1-who_am_i
     
 2. Groups
-mandatory
-Score: 100.0% (Checks completed: 100.0%)
+)
 Write a script that prints all the groups the current user is part of.
 
 julien@ubuntu:/tmp/h$ ./2-groups
@@ -46,7 +44,6 @@ File: 2-groups
     
 3. New owner
 mandatory
-Score: 100.0% (Checks completed: 100.0%)
 Write a script that changes the owner of the file hello to the user betty.
 
 julien@ubuntu:/tmp/h$ ls -l
@@ -66,8 +63,6 @@ Directory: 0x01-shell_permissions
 File: 3-new_owner
     
 4. Empty!
-mandatory
-Score: 100.0% (Checks completed: 100.0%)
 Write a script that creates an empty file called hello.
 
 Repo:
@@ -78,7 +73,7 @@ File: 4-empty
     
 5. Execute
 mandatory
-Score: 100.0% (Checks completed: 100.0%)
+
 Write a script that adds execute permission to the owner of the file hello.
 
 The file hello will be in the working directory
@@ -102,7 +97,7 @@ File: 5-execute
     
 6. Multiple permissions
 mandatory
-Score: 100.0% (Checks completed: 100.0%)
+
 Write a script that adds execute permission to the owner and the group owner, and read permission to other users, to the file hello.
 
 The file hello will be in the working directory
@@ -124,7 +119,7 @@ File: 6-multiple_permissions
     
 7. Everybody!
 mandatory
-Score: 100.0% (Checks completed: 100.0%)
+
 Write a script that adds execution permission to the owner, the group owner and the other users, to the file hello
 
 The file hello will be in the working directory
@@ -147,7 +142,7 @@ File: 7-everybody
     
 8. James Bond
 mandatory
-Score: 100.0% (Checks completed: 100.0%)
+
 Write a script that sets the permission to the file hello as follows:
 
 Owner: no permission at all
@@ -173,7 +168,7 @@ File: 8-James_Bond
     
 9. John Doe
 mandatory
-Score: 100.0% (Checks completed: 100.0%)
+
 Write a script that sets the mode of the file hello to this:
 
 -rwxr-x-wx 1 julien julien 23 Sep 20 14:25 hello
@@ -187,7 +182,7 @@ File: 9-John_Doe
     
 10. Look in the mirror
 mandatory
-Score: 65.0% (Checks completed: 100.0%)
+
 Write a script that sets the mode of the file hello the same as olleh’s mode.
 
 The file hello will be in the working directory
@@ -214,7 +209,7 @@ File: 10-mirror_permissions
     
 11. Directories
 mandatory
-Score: 50.0% (Checks completed: 100.0%)
+
 Create a script that adds execute permission to all subdirectories of the current directory for the owner, the group owner and all other users. Regular files should not be changed.
 
 julien@ubuntu:/tmp/h$ ls -l
@@ -241,7 +236,7 @@ File: 11-directories_permissions
     
 12. More directories
 mandatory
-Score: 65.0% (Checks completed: 100.0%)
+
 Create a script that creates a directory called my_dir with permissions 751 in the working directory.
 
 julien@ubuntu:/tmp/h$ ls -l
@@ -269,7 +264,7 @@ File: 12-directory_permissions
     
 13. Change group
 mandatory
-Score: 100.0% (Checks completed: 100.0%)
+
 Write a script that changes the group owner to school for the file hello
 
 The file hello will be in the working directory
