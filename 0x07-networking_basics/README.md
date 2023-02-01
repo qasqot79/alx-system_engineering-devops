@@ -1,4 +1,6 @@
-Tasks
+0x07-networking_basics
+
+Tasks 
 
 0. OSI model
 mandatory
@@ -28,11 +30,13 @@ How is the OSI model organized?
 Alphabetically
 From the lowest to the highest level
 Randomly
+
 Repo:
 
 GitHub repository: alx-system_engineering-devops
 Directory: 0x07-networking_basics
 File: 0-OSI_model
+
 
 1. Types of network
 
@@ -55,6 +59,7 @@ What network do you use when you browse www.google.com from your smartphone (not
 Internet
 WAN
 LAN
+
 Repo:
 
 GitHub repository: alx-system_engineering-devops
@@ -74,6 +79,7 @@ What is an IP address?
 Is to devices connected to a network what postal address is to houses
 The unique identifier of a network interface
 Is a number that network devices use to connect to networks
+
 Repo:
 
 GitHub repository: alx-system_engineering-devops
@@ -150,11 +156,13 @@ unix  2      [ ACC ]     STREAM     LISTENING     8559     835/dbus-daemon     /
 unix  2      [ ACC ]     STREAM     LISTENING     9190     1087/acpid          /var/run/acpid.socket
 unix  2      [ ACC ]     SEQPACKET  LISTENING     7156     378/systemd-udevd   /run/udev/control
 sylvain@ubuntu$
+
 Repo:
 
 GitHub repository: alx-system_engineering-devops
 Directory: 0x07-networking_basics
 File: 4-TCP_and_UDP_ports
+
 
 5. Is the host on the network
 
