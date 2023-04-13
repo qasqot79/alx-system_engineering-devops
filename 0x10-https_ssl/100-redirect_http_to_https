@@ -33,19 +33,19 @@ defaults
 	errorfile 503 /etc/haproxy/errors/503.http
 	errorfile 504 /etc/haproxy/errors/504.http
 
-frontend  ehoneah-frontend-http
+frontend  qasqot79-frontend-http
         bind *:80
         mode http
 	http-request set-header X-Forwarded-Proto http
         default_backend ehoneah-backend
 
-frontend ehoneah-frontend-https
-	bind *:443 ssl crt /etc/haproxy/certs/www.ehoneah.tech.pem
+frontend qasqot79-frontend-https
+	bind *:443 ssl crt /etc/haproxy/certs/www.navesta.com
 	http-request set-header X-Forwarded-Proto https
 	http-request redirect scheme https code 301 unless { ssl_fc }
 	default_backend ehoneah-backend
 
-backend ehoneah-backend
+backend qasqot79-backend
         balance roundrobin
         server 63210-web-01 100.25.19.204:80 check
         server 63210-web-02 54.157.159.85:80 check
