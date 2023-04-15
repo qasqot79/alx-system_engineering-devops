@@ -1,0 +1,36 @@
+What happens when you type google.com in your browser and press Enter.
+
+ On this topic,I will be discussing how www.google.com works on a browser when enter is pressed.A browser is a local programme like Chrome,Firefox,Internet Explorer which opens a window which is locally hosted on the desktop or a laptop.
+ This paper will examine how the web works using www.google.com as a case study,the interfaces it passes through and the end result.It will also covers other aspects of web server like:
+  . DNS request
+TCP/IP
+Firewall
+HTTPS/SSL
+Load-balancer
+Web server
+Application server
+Database
+
+DNS request and Domain Name System (DNS)
+A DNS query or DNS request is a demand for information sent from a user's computer (DNS client) to a DNS server. In most cases a DNS request is sent, to ask for the IP address associated with a domain name.
+The Domain Name System (DNS) on the otherhand is often reffered to as the "phonebook of the Internet". Humans access information online through domain names like google.com,yahoo.com.
+  DNS turns domain names into IP addresses, which allow browsers to get to websites and other internet resources. Every device on the internet has an IP address, which other devices can use to locate the device.
+TCP/IP
+TCP/IP stands for Transmission Control Protocol/Internet Protocol and is a suite of communication protocols used to interconnect network devices on the internet. TCP/IP is also used as a communications protocol in a private computer network (an intranet or extranet).
+There are four layers of the TCP/IP model: network access, internet, transport, and application. Used together, these layers are a suite of protocols.
+Firewall
+A firewall is a computer network security system that restricts internet traffic in to, out of, or within a private network. This software or dedicated hardware-software unit functions by selectively blocking ,allowing data packets or compromising internet security.
+HTTPS/SSL
+ HTTPS is a combination of HTTP with SSL/TLS. It means that HTTPS is basically HTTP connection which is delivering the data secured using SSL/TLS. SSL is a secure protocol that works on the top of HTTP to provide adequate security.
+Load-balancer
+A load balancer is a device that acts as a reverse proxy and distributes network or application traffic across a number of servers. Load balancer is used to increase capacity (concurrent users) and reliability of applications.
+What is a web server?
+A web server is software and hardware which uses Hypertext Transfer Protocol(HTTP) and other protocols to respond to client requests made over the World Wide Web. Through this process, web servers load and deliver the requested page to the user's browser - Google Chrome, for example.The major  role of a web server is to display website contents through storing, processing and delivering web pages to clients.
+Application server
+It is a type of server designed to install, operate and host associated services and applications for the IT services,clients and organizations.
+Database
+Databases often store information about people, such as customers or users. For example www.google.com and social media platforms (facebook,twitter,instagram) use databases to store user information likes names, email addresses and user behavior. The data is used to recommend content to users and improve the user experience.This is useful in advertising products to the clients or end users on the web.
+This diagram illustrates how the internet browser works.Conclusion
+When you type www.google.com into the browser such as firefox,chrome. The browser initiates the TCP|IP connection with the web server.The Browser sends the HTTP|SSL  request to the server.
+The firewall secures home network from threats coming external networks|sources on the Internet and prevent outsiders from gaining access to private information or taking control of devices on a network.
+When trying to access google.com, Google's server receives a request from the load balancer. The web server would then process the request and generate a response, which usually include the HTML, CSS, and JavaScript files that make up a web page.The browser renders the content to the clients or end users.
