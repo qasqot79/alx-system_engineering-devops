@@ -9,5 +9,8 @@ ufw enable
 ufw default deny incoming
 ufw default allow outgoing
 ufw allow 22/tcp
+ufw allow SSH
 ufw allow 443/tcp
+ufw allow HTTPS SSL
 ufw allow 80/tcp
+ufw allow http
