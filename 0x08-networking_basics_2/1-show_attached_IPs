@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
-# This script displays all acive IPv4 addresses on the machine.
+# this script will be used as an ip set up script, works in docker
 
-ifconfig | grep -Eo "inet (addr:)?([0-9]*\.){3}[0-9]*" | cut -b 6-
+<<<<<<< HEAD
+hostname -I | cut -d' ' -f1 ; hostname -i
+=======
+ifconfig | grep 'inet addr' | cut -d':' -f2 | cut -d' ' -f1
+>>>>>>> origin/master
