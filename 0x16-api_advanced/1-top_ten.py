@@ -1,35 +1,21 @@
 #!/usr/bin/python3
-"""script for parsing web data from an api
-"""
-import json
+"""Function to print hot posts on a given Reddit subreddit."""
 import requests
-import sys
 
 
 def top_ten(subreddit):
-    """api call to reddit to get the number of subscribers
-    """
-    base_url = 'https://www.reddit.com/r/'
+    """Print the titles of the 10 hottest posts on a given subreddit."""
+    url = "https://www.reddit.com/r/{}/hot/.json".format(subreddit)
     headers = {
-        'User-Agent':
-        'Mozilla/5.0 (Windows; U; Windows NT 5.1; de; rv:1.9.2.3) \
-        Gecko/20100401 Firefox/3.6.3 (FM Scene 4.6.1)'
+        "User-Agent": "linux:0x16.api.advanced:v1.0.0 (by /u/bdov_)"
     }
-    # grab info about all users
-    url = base_url + '{}/top/.json?count=10'.format(subreddit)
-    response = requests.get(url, headers=headers)
-    resp = json.loads(response.text)
-
-    try:
-        # grab the info about the users' tasks
-        data = resp.get('data')
-        children = data.get('children')
-    except:
-        print('None')
-    if children is None or data is None or len(children) < 1:
-        print('None')
-
-    for i, post_dict in enumerate(children):
-        if i == 10:
-            break
-        print(post_dict.get('data').get('title'))
+    params = {
+        "limit": 10
+    }
+    response = requests.get(url, headers=headers, params=params,
+                            allow_redirects=False)
+    if response.status_code == 404:
+        print("None")
+        return
+    results = response.json().get("data")
+    [print(c.get("data").get("title")) for c in results.get("children")]
