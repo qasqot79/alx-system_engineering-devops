@@ -1,6 +1,8 @@
-# Fixes a faulty wordpress site
-exec { 'fix-wordpress':
-  command => 'bash -c "sed -i s/class-wp-locale.phpp/class-wp-locale.php/ \
-/var/www/html/wp-settings.php; service apache2 restart"',
-  path    => '/usr/bin:/usr/sbin:/bin'
+# issue on line 137 of /var/www/html/wp-settings.php
+$rep = 'require_once( ABSPATH . WPINC . \'/class-wp-locale.php\' );'
+$settings = '/var/www/html/wp-settings.php'
+$cmd = "sed -i \"/class-wp-locale.phpp/c ${::rep}\" ${::settings}"
+exec { 'serverfix':
+  path    => '/bin',
+  command => $cmd,
 }
