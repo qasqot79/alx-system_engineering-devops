@@ -1,11 +1,8 @@
 #!/usr/bin/python3
-
 """
 importing requests module
 """
-
 from requests import get
-
 
 def count_words(subreddit, word_list=[], after=None, cleaned_dict=None):
     """
