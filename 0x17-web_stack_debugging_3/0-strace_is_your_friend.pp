@@ -1,5 +1,6 @@
-# Create a manifest that fixes why Apache is returning a 500 error
+#Using strace  and then using Puppet to automate fix for 500 error on Apache
+
 exec { 'fix_typo':
-  command => 'mv /var/www/html/wp-includes/class-wp-locale.php /var/www/html/wp-includes/class-wp-locale.phpp',
-  path    => '/bin/'
-}
+  path     => ['/usr/bin', '/sbin', '/bin', '/usr/sbin'],
+  command  =>  "sed -i 's/.phpp/.php/g' /var/www/html/wp-settings.php",
+  provider =>  'shell'}
