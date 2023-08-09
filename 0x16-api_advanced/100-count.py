@@ -88,3 +88,4 @@ def count_words(subreddit, word_list, after="null", host_list=[]):
                 print("{}: {}".format(word_list[pos], my_count[pos]))
     else:
         return(None)
+'''
