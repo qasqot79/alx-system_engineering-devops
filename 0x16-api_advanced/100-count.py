@@ -26,6 +26,7 @@ def count_words(subreddit, word_list):
             if val != 0:
                 print("{}: {}".format(key, val))
 
+
 def recurse(subreddit, hot_list=[]):
     """ recurse is a function that return hot list from
         a subreddit"""
@@ -54,6 +55,7 @@ def recurse(subreddit, hot_list=[]):
 import json
 import requests
 import sys
+
 
 def count_words(subreddit, word_list, after="null", host_list=[]):
     """Read reddit API and return top 10 hotspots """
