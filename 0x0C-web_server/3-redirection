@@ -1,32 +1,31 @@
 #!/usr/bin/env bash
-# Install and setup new nginx server
+# Installs, configures, and starts the server
+apt-get update
+apt-get -y install nginx
+sudo ufw allow 'Nginx HTTP'
+mkdir -p /var/www/html/
+sudo chmod -R 755 /var/www
+echo 'Hello World!' > /var/www/html/index.html
+SERVER_CONFIG=\
+"server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+	root /var/www/html;
+	index index.html index.htm index.nginx-debian.html;
+	server_name _;
+	location / {
+		try_files \$uri \$uri/ =404;
+	}
+	if (\$request_filename ~ redirect_me){
+		rewrite ^ https://sketchfab.com/bluepeno/models permanent;
+	}
+}"
 
-apt-get update -y && \
-apt-get install -y nginx
-if [ $? -eq 0 ]
-then
-    service nginx start
-    echo -e \
-"http {
-    root /var/www/holberton;
-    server {
-        listen 80;
-        server_name realqasqot79.tech;
-        rewrite ^/redirect_me/? \
-https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;
-        location / {
-            index index.html;
-        }
-    }
-}
-events {
-}" > /etc/nginx/nginx.conf
-    mkdir -p /var/www/holberton
-    echo "Holberton School" > \
-	/var/www/holberton/index.html
-    service nginx restart
+bash -c "echo -e '$SERVER_CONFIG' > /etc/nginx/sites-enabled/default"
+
+if [ "$(pgrep -c nginx)" -le 0 ]; then
+	service nginx start
 else
-    echo "Could not install nginx"
-    exit 1
+	service nginx restart
 fi
-exit 0
+   
