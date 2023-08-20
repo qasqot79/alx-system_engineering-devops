@@ -1,3 +1,3 @@
 #!/bin/bash
 # Listen on port 98 and pass incoming data to the handle_data function
-nc -l -p 98 -c "handle_data"
+nc -l -p 98 -c 
