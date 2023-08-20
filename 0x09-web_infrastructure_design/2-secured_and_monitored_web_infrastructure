@@ -1,0 +1,31 @@
+Design of Secured and Monitored Three-Server Web Infrastructure for www.foobar.com:
+Elements and Explanations:
+
+Firewalls: The firewalls are added to enhance security by filtering and controlling incoming and outgoing traffic to the servers. They act as a barrier to potential threats and unauthorized access.
+
+SSL Certificate (HTTPS): An SSL certificate is installed on the load balancer to enable HTTPS. This ensures encrypted communication between users and the web servers, enhancing data security and privacy.
+
+Monitoring Clients: The monitoring clients collect data from each server, providing insights into server health, performance, and potential issues. They send this data to monitoring services like Sumo Logic for analysis.
+
+Additional Explanations:
+
+Firewalls: Firewalls are used to restrict unauthorized access and malicious traffic from reaching the servers. They act as a security layer to prevent potential attacks.
+
+SSL Certificate and HTTPS: HTTPS is used to encrypt the data transmitted between users' browsers and the servers. This prevents eavesdropping and data manipulation during transit.
+
+Monitoring: Monitoring tools are used to keep track of the servers' performance, resource usage, and potential issues. They help in identifying and addressing problems proactively.
+
+Monitoring Data Collection: Monitoring clients collect data on various metrics such as CPU usage, memory usage, network traffic, and more. This data is sent to monitoring services for analysis and visualization.
+
+Monitoring Web Server QPS: To monitor the web server's queries per second (QPS), you would set up monitoring tools to track incoming requests and calculate the rate of queries over a specific time period.
+
+Issues with the Infrastructure:
+
+Terminating SSL at Load Balancer: Terminating SSL at the load balancer can lead to data being transmitted unencrypted between the load balancer and backend servers. End-to-end encryption is lost in this scenario.
+
+Single MySQL Server for Writes: Having only one MySQL server capable of accepting writes creates a single point of failure. If this server goes down, write operations will be affected.
+
+Uniform Server Components: If all servers have the same components (database, web server, application server), a problem or vulnerability affecting one component could potentially impact all servers simultaneously.
+
+To address these issues, consider implementing end-to-end encryption, setting up a MySQL cluster for redundancy, and diversifying server components based on their roles for better fault tolerance.
+
