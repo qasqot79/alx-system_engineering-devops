@@ -1,4 +1,11 @@
-#!/usr/bin/env bash
-# Listens on port 98 on localhost.
+#!/bin/bash
 
-nc -l localhost 98
+# Function to handle incoming data
+handle_data() {
+  while IFS= read -r line; do
+    echo "$line"
+  done
+}
+
+# Listen on port 98 and pass incoming data to the handle_data function
+nc -l -p 98 -c "handle_data"
