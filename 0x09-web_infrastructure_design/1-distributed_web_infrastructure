@@ -31,6 +31,23 @@ No Monitoring: Monitoring tools are necessary to keep track of server health, re
 
 To improve the infrastructure, you could add a firewall, implement HTTPS for secure communication, set up monitoring tools, and consider adding redundancy to the load balancer for high availability.
 
-
+    Load Balancer (HAproxy)       Application Servers         Database Servers
+    +-----------------------+     +-----------------+     +---------------------+
+    |                       |     |                 |     |                     |
+----|---->   Server 1        |     |   Application   |     |  Database (Primary) |
+    |                       |     |    Server 1    |     |      (Master)       |
+    |                       |     |                 |     |                     |
+    +-----------------------+     +-----------------+     +---------------------+
+             ^                                                      |
+             |                                                      |
+             |                                                      |
+             |                                                      |
+             |                                                      |
+    +-----------------------+                              +---------------------+
+    |                       |                              |                     |
+----|---->   Server 2        |                              | Database (Replica) |
+    |                       |                              |      (Slave)        |
+    |                       |                              |                     |
+    +-----------------------+                              +---------------------+
 
 
