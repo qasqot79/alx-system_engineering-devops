@@ -10,4 +10,3 @@ for interface in $interfaces; do
     for ip in $ipv4_addresses; do
         echo $ip
     done
-done
