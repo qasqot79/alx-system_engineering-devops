@@ -1,12 +1,4 @@
-#!/bin/bash
-# Get a list of all network interfaces
-interfaces=$(ip -o link show | awk -F': ' '{print $2}')
+#!/usr/bin/env bash
+# displays all active IPv4 IPs on this machine
 
-# Loop through each interface and extract IPv4 addresses
-for interface in $interfaces; do
-    ipv4_addresses=$(ip -4 addr show $interface | grep -oP 'inet \K[\d.]+')
-    
-    # Display each IPv4 address
-    for ip in $ipv4_addresses; do
-        echo $ip
-    done
+ifconfig | grep "inet addr" | cut -d ":" -f2 | cut -d " " -f1
