@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 # this script will be used as an ip set up script, works in docker
 
-<<<<<<< HEAD
 hostname -I | cut -d' ' -f1 ; hostname -i
-=======
+
 ifconfig | grep 'inet addr' | cut -d':' -f2 | cut -d' ' -f1
->>>>>>> origin/master
