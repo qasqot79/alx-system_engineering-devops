@@ -1,0 +1,34 @@
+User Accessing the Website:
+Let's start with the user wanting to access the website at www.foobar.com.
+
+Server:
+A server is a powerful computer or system that hosts and serves data, applications, and services to clients (users' computers or devices) over a network, typically the internet.
+
+Domain Name and DNS:
+The domain name "www.foobar.com" serves as a human-readable address for the website. When a user types in this domain name, their request needs to be translated into an IP address to locate the server. This is where the Domain Name System (DNS) comes in. The DNS resolves human-readable domain names to IP addresses. In this case, the DNS record for the "www" subdomain would be an A record pointing to the server's IP address, which is 8.8.8.8.
+
+Web Server (Nginx):
+The web server, in this case, Nginx, is responsible for receiving incoming HTTP requests from users' browsers and serving the appropriate web pages in response. It manages static content (images, CSS, JavaScript) and can also act as a reverse proxy to distribute requests to the application server.
+
+Application Server:
+The application server is responsible for processing dynamic content and generating responses to user requests. It hosts the application's codebase and handles tasks like authentication, data processing, and interacting with the database.
+
+Application Files (Code Base):
+These are the files containing the website's code, including HTML, CSS, JavaScript, and any server-side scripts (e.g., PHP, Python, Ruby) that the application server executes to generate dynamic content.
+
+Database (MySQL):
+The database stores and manages structured data used by the application. In this case, MySQL is used. It can store user accounts, content, configuration settings, and more. The application server communicates with the database to fetch and store data as needed.
+
+Communication with User's Computer:
+When a user requests the website, their computer sends an HTTP request to the server's IP address (8.8.8.8). The request is received by the web server (Nginx), which processes it and forwards it to the application server if dynamic content is required. The application server communicates with the database to fetch data if necessary and generates an appropriate HTTP response. This response travels back through the web server and over the internet to the user's computer, which displays the website in their browser.
+
+Issues with the Infrastructure:
+
+Single Point of Failure (SPOF): Since there's only one server, if it goes down, the entire website becomes inaccessible.
+Downtime during Maintenance: When updates or maintenance are required (e.g., deploying new code), the web server needs to be restarted, causing downtime for users.
+Scaling Limitations: If the website experiences a surge in incoming traffic, a single server may struggle to handle the load efficiently.
+To address these issues, you could consider implementing a load balancer for distributing traffic, setting up a redundant server for high availability, and using a content delivery network (CDN) for better performance and scalability.
+
+
+
+
