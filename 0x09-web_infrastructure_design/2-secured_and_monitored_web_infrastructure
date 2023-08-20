@@ -29,3 +29,27 @@ Uniform Server Components: If all servers have the same components (database, we
 
 To address these issues, consider implementing end-to-end encryption, setting up a MySQL cluster for redundancy, and diversifying server components based on their roles for better fault tolerance.
 
+   +----------+       +----------+      +----------+
+   | Firewall |       | Firewall |      | Firewall |
+   +----------+       +----------+      +----------+
+        |                  |                 |
+        v                  v                 v
+   +------------+     +------------+   +------------+
+   |  Web       |     |  Web       |   |  Web       |
+   |  Server 1  |     |  Server 2  |   |  Server 3  |
+   +------------+     +------------+   +------------+
+        |                  |                 |
+        v                  v                 v
+   +------------+     +------------+   +------------+
+   | Application|     | Application|   | Application|
+   |  Server 1  |     |  Server 2  |   |  Server 3  |
+   +------------+     +------------+   +------------+
+        |                  |                 |
+        v                  v                 v
+   +------------+     +------------+   +------------+
+   |   Database |     |   Database |   |   Database |
+   |  Server 1  |     |  Server 2  |   |  Server 3  |
+   +------------+     +------------+   +------------+
+        |                  |                 |
+        v                  v                 v
+  Monitoring Clients   Monitoring Clients   Monitoring Clients
