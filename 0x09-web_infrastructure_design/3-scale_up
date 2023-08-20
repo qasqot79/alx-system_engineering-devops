@@ -1,0 +1,39 @@
+This README provides an overview of the web infrastructure design that separates the application server from the web server components. The design incorporates a server, a load balancer (HAproxy) configured in a cluster, and separate servers for web server, application server, and database components.
+
+Design Overview:
+
+In this design, we have a setup with two servers, each serving distinct roles within the web infrastructure:
+
+Server 1 (Load Balancer Cluster Member):
+
+Role: Load Balancer (HAproxy)
+Configuration: This server is part of a load balancer cluster, distributing incoming traffic among the backend servers.
+Purpose: The load balancer ensures efficient distribution of incoming user requests across the web server cluster.
+Server 2 (Web Server):
+
+Role: Web Server (e.g., Nginx, Apache)
+Purpose: The web server handles initial user requests, serves static content (e.g., images, CSS, JavaScript), and manages SSL termination for HTTPS traffic.
+Configuration: The web server communicates with the load balancer to receive and respond to user requests.
+Server 3 (Application Server):
+
+Role: Application Server
+Purpose: The application server handles dynamic content generation, processing user input, and interfacing with the database server.
+Configuration: The application server communicates with both the web server and the database server to fulfill user requests.
+Server 4 (Database Server):
+
+Role: Database Server (e.g., MySQL, PostgreSQL)
+Purpose: The database server stores and manages structured data used by the application.
+Configuration: The application server communicates with the database server to fetch and store data.
+Rationale for Separate Components:
+
+Load Balancer Cluster: By configuring the load balancer as a cluster, we ensure high availability and distribute incoming traffic evenly among the backend servers. This enhances both redundancy and scalability.
+
+Web Server: Separating the web server from the application server allows the web server to focus on serving static content, handling SSL termination, and efficiently routing traffic to the appropriate application server. This segregation improves performance and simplifies maintenance.
+
+Application Server: Isolating the application server enables it to concentrate on processing dynamic content and user interactions. It interfaces with both the web server and the database server, ensuring efficient communication and optimized workload handling.
+
+Database Server: Keeping the database on a dedicated server allows it to focus solely on storing and managing data. This separation enhances data security, scalability, and data integrity.
+
+Conclusion:
+
+The design discussed here offers a clear division of responsibilities among the different components in the web infrastructure. This separation enhances performance, scalability, and maintainability while ensuring effective communication and data management.
