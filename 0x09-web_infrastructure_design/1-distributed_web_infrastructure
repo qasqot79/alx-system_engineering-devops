@@ -1,0 +1,36 @@
+Design of Three-Server Web Infrastructure for www.foobar.com:
+
+Elements and Explanations:
+
+Load Balancer (HAproxy): The load balancer distributes incoming traffic across multiple application servers to ensure high availability and load distribution. This helps prevent overload on a single server and provides redundancy in case one server fails.
+
+Application Servers: These servers host the application code and handle dynamic content generation. They receive user requests from the load balancer and process them, interacting with the database if needed.
+
+Database Servers (Primary and Replica): The database servers store the application's data. The Primary (Master) database handles write operations, while the Replica (Slave) database synchronously replicates data from the Primary and handles read operations. This setup enhances both data redundancy and read scalability.
+
+Load Balancer Distribution Algorithm:
+The load balancer is configured with a Round Robin distribution algorithm. This means that incoming requests are distributed sequentially to each application server in a circular manner.
+
+Active-Active vs. Active-Passive Setup:
+The load balancer enables an Active-Passive setup. In this configuration, only one application server is active at a time, while the others are passive and ready to take over in case of an active server's failure. Active-Active would involve all servers being active simultaneously, which can be more complex to manage and synchronize.
+
+Database Primary-Replica Cluster:
+In a Primary-Replica cluster (Master-Slave setup), the Primary (Master) database handles write operations and sends updates to the Replica (Slave) database, which synchronously replicates the data. This improves data redundancy and enhances read scalability.
+
+Difference Between Primary and Replica Nodes:
+
+Primary Node: Handles write operations, ensuring data consistency and integrity.
+Replica Node: Handles read operations, offloading read traffic from the Primary and providing improved read performance. It also acts as a backup in case the Primary node fails.
+Issues with the Infrastructure:
+
+Single Points of Failure (SPOF): The load balancer itself can become a single point of failure. Also, if the Primary database server fails, the Replica node can't handle write operations until the Primary is restored.
+
+Security Issues: The design lacks a firewall to protect the servers from unauthorized access. Also, there is no mention of HTTPS for secure data transmission.
+
+No Monitoring: Monitoring tools are necessary to keep track of server health, resource usage, and potential issues.
+
+To improve the infrastructure, you could add a firewall, implement HTTPS for secure communication, set up monitoring tools, and consider adding redundancy to the load balancer for high availability.
+
+
+
+
