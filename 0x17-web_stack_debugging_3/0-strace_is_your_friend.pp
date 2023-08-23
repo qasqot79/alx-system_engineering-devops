@@ -1,5 +1,7 @@
 # Attach strace to the Apache process with PID
 sudo strace -p <apache_pid> -o apache_strace.log
+curl -sI 127.0.0.1
+
 # content of 0-strace_is_your_friend.pp
 file { '/etc/apache2/sites-available/your-site.conf':
   ensure  => file,
