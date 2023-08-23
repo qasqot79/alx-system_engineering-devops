@@ -1,8 +1,18 @@
-# Manifest to fix issue with LAMP stack serving Wordpress site.
+# Attach strace to the Apache process with PID
+sudo strace -p <apache_pid> -o apache_strace.log
+# content of 0-strace_is_your_friend.pp
+file { '/etc/apache2/sites-available/your-site.conf':
+  ensure  => file,
+  source  => 'puppet:///modules/your_module/your-site.conf', # Upload your fixed site configuration file to this path on the Puppet server
+  owner   => 'root',
+  group   => 'root',
+  mode    => '0644',
+  require => Package['apache2'],
+  notify  => Service['apache2'],
+}
 
-# Issue is a misspelled resource in `wp-settings.php`.
-exec {'sed phpp':
-  command => "sed -i 's/phpp/php/' /var/www/html/wp-settings.php",
-  path    => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin',
-  onlyif  => 'test -f /var/www/html/wp-settings.php',
+service { 'apache2':
+  ensure  => running,
+  enable  => true,
+  require => File['/etc/apache2/sites-available/your-site.conf'],
 }
