@@ -2,6 +2,7 @@
 """ Functions to adcquire info from API Reddit"""
 import requests
 
+
 def count_words(subreddit, word_list, after=None, word_count={}):
     base_url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
     headers = {"User-Agent": "my_script/1.0"}
