@@ -5,6 +5,7 @@ If the subreddit is invalid or no results are found, it returns None.
 """
 import requests
 
+
 def recurse(subreddit, hot_list=[], after=None):
     if after is None:
         url = f'https://www.reddit.com/r/{subreddit}/hot.json?limit=100'
