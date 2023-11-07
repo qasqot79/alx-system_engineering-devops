@@ -12,7 +12,7 @@ def recurse(subreddit, hot_list=[], after=None):
     else:
         url = f'https://www.reddit.com/r/{subreddit}/hot.json?limit=100&after={after}'
     
-    headers = {'User-Agent': 'u/qasqot79'}  # Set a custom User-Agent to avoid issues
+    headers = {'User-Agent': 'by u/qasqot79'}  # Set a custom User-Agent to avoid issues
 
     response = requests.get(url, headers=headers)
 
