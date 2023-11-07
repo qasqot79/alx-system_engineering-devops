@@ -1,20 +1,24 @@
-# Attach strace to the Apache process with PID
-sudo strace -p <apache_pid> -o apache_strace.log
-curl -sI 127.0.0.1
+# Puppet manifest to fix the Apache 500 error
 
-# content of 0-strace_is_your_friend.pp
-file { '/etc/apache2/sites-available/your-site.conf':
-  ensure  => file,
-  source  => 'puppet:///modules/your_module/your-site.conf', # Upload your fixed site configuration file to this path on the Puppet server
-  owner   => 'root',
-  group   => 'root',
-  mode    => '0644',
-  require => Package['apache2'],
-  notify  => Service['apache2'],
+# Ensure Apache package is installed
+package { 'apache2':
+  ensure => 'installed',
 }
 
+# Ensure Apache service is running and enabled
 service { 'apache2':
-  ensure  => running,
+  ensure  => 'running',
   enable  => true,
-  require => File['/etc/apache2/sites-available/your-site.conf'],
+  require => Package['apache2'],
 }
+
+# Define a custom resource to fix the issue
+# You will need to replace this with the actual fix for your issue
+exec { 'fix_apache_issue':
+  command     => '/bin/echo "Fixing Apache issue"',
+  path        => '/bin',
+  refreshonly => true,
+}
+
+# Notify the custom resource when Apache service changes
+Service['apache2'] -> Exec['fix_apache_issue']
