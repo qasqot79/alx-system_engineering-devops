@@ -1,11 +1,11 @@
 #!/usr/bin/python3
-
 """
 Recursive function that queries the Reddit API, parses the title of all hot articles, and prints a sorted count of given keywords.
 """
 
 import sys
 import requests
+
 
 def count_words(subreddit, word_list, after=None, counts=None):
     if counts is None:
@@ -14,7 +14,7 @@ def count_words(subreddit, word_list, after=None, counts=None):
     if not word_list:
         return counts
 
-    headers = {'User-Agent': 'qasqottech79'}
+    headers = {'User-Agent': 'realqasqot79.tech'}
     params = {'limit': 100}
     if after:
         params['after'] = after
