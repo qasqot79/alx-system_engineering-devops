@@ -13,7 +13,7 @@ def count_words(subreddit, word_list, after=None, counts=None):
     if not word_list:
         return counts
 
-    headers = {'User-Agent': 'u/qasqot79'}
+    headers = {'User-Agent': 'by u/qasqot79'}
     params = {'limit': 100}
     if after:
         params['after'] = after
