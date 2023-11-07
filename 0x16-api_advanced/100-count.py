@@ -1,41 +1,37 @@
 #!/usr/bin/python3
 """ Functions to adcquire info from API Reddit"""
-import praw
+import requests
 
-def count_words(subreddit, word_list, after=None, counts=None):
-    if counts is None:
-        counts = {}
+def count_words(subreddit, word_list, after=None, word_count={}):
+    base_url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
+    headers = {"User-Agent": "my_script/1.0"}
+    params = {"after": after, "limit": 100}
 
-    # Initialize the Reddit API client
-    reddit = praw.Reddit(client_id='YOUR_CLIENT_ID',
-                         client_secret='YOUR_CLIENT_SECRET',
-                         user_agent='YOUR_USER_AGENT')
+    response = requests.get(base_url, headers=headers, params=params, allow_redirects=False)
 
-    # Check if the subreddit is valid
-    try:
-        reddit.subreddits.search_by_name(subreddit, exact=True)
-    except prawcore.NotFound:
+    if response.status_code != 200:
         return
 
-    # Query the API for hot articles in the subreddit
-    hot_articles = reddit.subreddit(subreddit).hot(limit=25, params={'after': after})
-
-    # Iterate through the hot articles
-    for article in hot_articles:
-        title = article.title.lower()
+    data = response.json()
+    posts = data.get("data", {}).get("children", [])
+    for post in posts:
+        title = post.get("data", {}).get("title", "")
         for word in word_list:
-            # Check if the word is in the title and not part of a larger word
-            if title.count(f" {word} ") + title.startswith(word) + title.endswith(word) > 0:
-                counts[word] = counts.get(word, 0) + 1
+            word = word.lower()
+            title_lower = title.lower()
+            if title_lower.count(word) > 0:
+                if word in word_count:
+                    word_count[word] += title_lower.count(word)
+                else:
+                    word_count[word] = title_lower.count(word)
 
-    # Check if there are more pages of results
-    if hot_articles._after:
-        return count_words(subreddit, word_list, after=hot_articles._after, counts=counts)
+    next_page = data.get("data", {}).get("after")
+    if next_page:
+        count_words(subreddit, word_list, next_page, word_count)
     else:
-        # Sort the results by count and then alphabetically
-        sorted_counts = sorted(counts.items(), key=lambda x: (-x[1], x[0]))
-        for word, count in sorted_counts:
-            print(f"{word}: {count}")
+        sorted_word_count = sorted(word_count.items(), key=lambda x: (-x[1], x[0]))
+        for word, count in sorted_word_count
+            print("{}: {}".format(word, count))
 
 if __name__ == '__main__':
     import sys
@@ -44,7 +40,6 @@ if __name__ == '__main__':
         print("Usage: {} <subreddit> <list of keywords>".format(sys.argv[0]))
         print("Ex: {} programming 'python java javascript'".format(sys.argv[0]))
     else:
-        subreddit_name = sys.argv[1]
-        keyword_list = sys.argv[2].split()
-        count_words(subreddit_name, keyword_list)
-    
+        subreddit = sys.argv[1]
+        keywords = sys.argv[2].split()
+        count_words(subreddit, keywords)
