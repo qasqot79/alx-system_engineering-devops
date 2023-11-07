@@ -3,7 +3,6 @@
 Queries the Reddit API and prints the titles of the first 10 hot posts for a given subreddit.
 If the subreddit is invalid, it prints None.
 """
-
 import requests
 
 def top_ten(subreddit):
