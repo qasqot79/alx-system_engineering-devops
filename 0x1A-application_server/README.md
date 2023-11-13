@@ -1,4 +1,4 @@
-Application server
+0x1A. Application server
 This was the application deployment project for our AirBnB clone. In this project, I configured Nginx on the web servers 
 
 Tasks 📃
