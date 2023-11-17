@@ -8,8 +8,7 @@ server {
     # Listen on port 80 for both IPv4 and IPv6
     listen 80;
 
-    # Server name, can be your domain name or IP address
-    server_name _;
+    # ubuntu, 54.172.216.213 _;
 
     # Location block for the /airbnb-onepage/ route
     location /airbnb-onepage/ {
