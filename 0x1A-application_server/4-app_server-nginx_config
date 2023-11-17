@@ -1,35 +1,43 @@
+# 4-app_server-nginx_config
+
+# Specify the Nginx version
+nginx_version "1.10.3";
+
+# Define a server block to handle requests
 server {
-	listen 80 default_server;
-	listen [::]:80 default_server;
+    # Listen on port 80 for both IPv4 and IPv6
+    listen 80;
 
-	root /var/www/html;
-	index index.html index.htm index.nginx-debian.html;
+    # Server name, can be your domain name or IP address
+    server_name _;
 
-	server_name _;
+    # Location block for the /api/ route
+    location /api/ {
+        # Proxy requests to the process listening on port 5002
+        proxy_pass http://127.0.0.1:5002;
 
-	location / {
-		try_files $uri $uri/ =404;
-	}
+        # Set some headers to pass to the process
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
 
-	location /airbnb-onepage/ {
-		proxy_pass http://localhost:5000;
-	}
+        # Allow WebSocket connections
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
 
-	location /airbnb-dynamic/ {
-		proxy_pass http://localhost:5001/;
-	}
+        # Set the maximum timeout for a connection to the backend server
+        proxy_connect_timeout 600s;
+        proxy_send_timeout 600s;
+        proxy_read_timeout 600s;
 
-	location /api/ {
-		proxy_pass http://localhost:5002;
-	}
+        # Disable buffering for WebSocket connections
+        proxy_buffering off;
 
-	if ($request_filename ~ redirect_me){
-		rewrite ^ https://sketchfab.com/bluepeno/models permanent;
-	}
+        # Enable proxying of WebSocket connections
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+    }
 
-	error_page 404 /404.html;
-	location = /404.html {
-		root /var/www/error/;
-		internal;
-	}
+    # Additional server configurations can be added here
 }
